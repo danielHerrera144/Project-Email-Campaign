@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive email · photo journey</title>
+  <style>
+    /* embedded styles for email clients that support style blocks */
+    @media screen and (max-width: 480px) {
+      .stack-cell {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+      }
+      .responsive-table {
+        width: 100% !important;
+      }
+      .mobile-stack {
+        display: block;
+        width: 100%;
+      }
+      .mobile-text {
+        font-size: 16px !important;
+      }
+      /* force images to scale */
+      img { height: auto; max-width: 100%; }
+    }
+
+
+    @keyframes borderColorCycle {
+      0% { border-color: red; border-width: 4px; }
+      14% { border-color: orange; border-width: 4px; }
+      28% { border-color: yellow; border-width: 4px; }
+	  42% { border-color: green; border-width: 4px; }
+	  57% { border-color: blue; border-width: 4px; }
+	  71% { border-color: indigo; border-width: 4px; }
+	  86% { border-color: violet; border-width: 4px; }
+	  100% { border-color: red; border-width: 4px; }
+    }
+	
+    /* radio-box technique: hide radio, toggle div using :checked + sibling selector */
+    .toggle-content {
+      display: none;
+      margin-top: 15px;
+      padding: 15px;
+      background: rgba(255,255,240,0.8);
+      border-radius: 12px;
+      border: 2px solid #ccaacc;
+      font-size: 15px;
+    }
+    #toggleRadio1:checked ~ .toggle-content-1,
+    #toggleRadio2:checked ~ .toggle-content-2 {
+      display: block;
+    }
+	
+    /* hide radio buttons visually but keep accessible */
+    .hidden-radio {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+	
+    .radio-label {
+      display: inline-block;
+      background: #e2e6ea;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      margin: 5px 5px 0 0;
+      transition: background 0.2s;
+    }
+    .radio-label:hover {
+      background: #cfd2d6;
+    }
+  </style>
+  
+</head>
+<body style="margin: 0; padding: 0; background-color: #ececec; font-family: Arial, Helvetica, sans-serif;">
+
+<!-- MAIN CONTAINER TABLE: 100% background -->
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="#ececec">
+  <tr>
+    <td align="center" style="padding: 20px 10px;">
+      
+      <!-- Outer card with animated background -->
+      <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="#ffffff" style="border-collapse: collapse; max-width: 600px; width: 100%; border: 2px solid #0086e6; animation: borderColorCycle 10s infinite;">
+        <tr>
+          <td style="padding: 24px 20px 20px 20px; background-image: url('Assets/landscape.gif'); background-size: cover; background-position: center;">
+            
+            <!-- semi-transparent overlay for readability -->
+            <div style="background-color: rgba(255,255,255,0.5); padding: 20px; border-radius: 8px;">
+              
+              <!-- ========== LOGO + HERO ========== -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="padding-bottom: 20px;">
+                    <img src="Assets/camera.png" alt="camera logo" width="140" style="display: block; max-width: 100%; height: auto; border: 0;">
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-bottom: 20px;">
+                    <a href="https://www.indeed.com/" target="_blank" style="text-decoration: none; border: 0;">
+                      <img src="Assets/hero.jpg" alt="hero landscape" width="560" height="200" style="display: block; width: 100%; max-width: 560px; height: auto; border-radius: 12px; border: 0;">
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="font-size: 28px; color: #1f2a36; padding: 5px 0 10px;">
+                    <h1 style="margin: 0; font-weight: 400; letter-spacing: 1px;">Hello World...</h1>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- ========== TWO-COLUMN COMPONENT ========== -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 20px 0;">
+                <tr>
+                  <td style="padding-bottom: 8px;"><h2 style="margin: 0; font-size: 22px; color: #1e2b37;">Recent Endeavours</h2></td>
+                </tr>
+                <tr>
+                  <!-- table layout -->
+                  <td style="padding: 0;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <!-- column 1 -->
+                        <td class="stack-cell" width="50%" style="vertical-align: top; padding-right: 10px;" bgcolor="transparent">
+                          <table width="100%" cellpadding="12" cellspacing="0" border="0" style="background: rgba(245, 245, 250, 0.8); border-radius: 16px;">
+                            <tr><td align="center" style="font-size: 18px; font-weight: bold; color: #2b3b4a;">street stories</td></tr>
+                            <tr><td style="font-size: 15px; color: #1f2a36;">Candid frames from Tokyo, Paris and Mexico City. Human moments that last.</td></tr>
+                          </table>
+                        </td>
+                        <!-- column 2 -->
+                        <td class="stack-cell" width="50%" style="vertical-align: top; padding-left: 10px;" bgcolor="transparent">
+                          <table width="100%" cellpadding="12" cellspacing="0" border="0" style="background: rgba(235, 245, 235, 0.8); border-radius: 16px;">
+                            <tr><td align="center" style="font-size: 18px; font-weight: bold; color: #2b3b4a;">aerial experiments</td></tr>
+                            <tr><td style="font-size: 15px; color: #1f2a36;">Drone shots over icelandic glaciers & Namibian dunes. New perspectives.</td></tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- ========== THREE-COLUMN COMPONENT ========== -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 30px 0 10px;">
+                <tr>
+                  <td style="padding-bottom: 8px;"><h2 style="margin: 0; font-size: 22px; color: #1e2b37;">Gear Picks</h2></td>
+                </tr>
+                <tr>
+                  <td style="padding: 0;">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <!-- col 1/3 -->
+                        <td class="stack-cell" width="33.33%" style="vertical-align: top; padding-right: 6px;">
+                          <table width="100%" cellpadding="10" cellspacing="0" border="0" style="background: rgba(220, 230, 240, 0.7); border-radius: 14px;">
+                            <tr><td align="center"><strong>70-200 f/2.8</strong></td></tr>
+                            <tr><td style="font-size: 14px;">portrait & wildlife beast</td></tr>
+                          </table>
+                        </td>
+                        <!-- col 2/3 -->
+                        <td class="stack-cell" width="33.33%" style="vertical-align: top; padding-left: 3px; padding-right: 3px;">
+                          <table width="100%" cellpadding="10" cellspacing="0" border="0" style="background: rgba(240, 220, 230, 0.7); border-radius: 14px;">
+                            <tr><td align="center"><strong>24mm 1.4</strong></td></tr>
+                            <tr><td style="font-size: 14px;">astro & low‑light magic</td></tr>
+                          </table>
+                        </td>
+                        <!-- col 3/3 -->
+                        <td class="stack-cell" width="33.33%" style="vertical-align: top; padding-left: 6px;">
+                          <table width="100%" cellpadding="10" cellspacing="0" border="0" style="background: rgba(230, 240, 220, 0.7); border-radius: 14px;">
+                            <tr><td align="center"><strong>35mm film</strong></td></tr>
+                            <tr><td style="font-size: 14px;">Kodak Portra 400</td></tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- ========== SKILLS / LIST AREA  ========== -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 20px 0;">
+                <tr>
+                  <td style="background: rgba(255, 255, 255, 0.8); padding: 16px 18px; border-radius: 20px;">
+                    <p style="margin: 0 0 10px; font-weight: bold; font-size: 18px;">Freelance photographer — credentials</p>
+                    <p style="margin: 0 0 8px;"><b>Experience</b></p>
+                    <ul style="margin: 5px 0 0; padding-left: 22px;">
+                      <li style="margin-bottom: 6px;"> Travelled to 24 countries</li>
+                      <li style="margin-bottom: 6px;"> Owner of local photography firm</li>
+                      <li style="margin-bottom: 6px;"> International Photography Awards 2023</li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- ========== CHECKED BOX TECHNIQUE (interactivity) ========== -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 20px 0;">
+                <tr>
+                  <td style="background: rgba(210, 230, 240, 0.7); padding: 18px 16px; border-radius: 20px;">
+                    <p style="margin: 0 0 12px; font-weight: bold; font-size: 17px;"> Extras (click to toggle)</p>
+                    
+                    <!-- hidden group -->
+                    <div>
+                      <input type="radio" name="toggle" id="toggleRadio1" class="hidden-radio" checked>
+                      <input type="radio" name="toggle" id="toggleRadio2" class="hidden-radio">
+                      
+                      <!-- labels for each radio -->
+                      <label for="toggleRadio1" class="radio-label" style="background:#d4e0e8;">Interview (I)</label>
+                      <label for="toggleRadio2" class="radio-label" style="background:#d4e0e8;">Field Recording (II)</label>
+                      
+                      <!-- content block 1 (visible by default because radio1 checked) -->
+                      <div class="toggle-content toggle-content-1" style="background: #fff8e7; border: 2px solid #b68b6e;">
+                        <strong>Behind the lens in Reykjavík</strong><br>
+                        "I talked with local musicians about northern lights photography. 12min snippet."
+                      </div>
+                      
+                      <!-- content block 2 (visible when radio2 checked) -->
+                      <div class="toggle-content toggle-content-2" style="background: #e7f0da; border: 2px solid #5f8b4b;">
+                        <strong>Rainforest ambisonics</strong><br>
+                        "Binaural recording from Costa Rica – howler monkeys & insects."
+                      </div>
+                    </div>
+                    
+                    <p style="font-size: 13px; margin-top: 14px; color: #2e3f4b;">Select different tab to change content</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- ========== BUTTON WITH ANIMATION ========== -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="padding: 20px 0 15px;">
+                    <a href="" style="background-color: #0086e6; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 50px; display: inline-block; font-weight: bold; font-size: 18px;">Join Me</a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- ========== LINKS & INTERACTIVITY ========== -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="font-size: 15px; color: #2d3743; padding: 10px 0 8px;">
+                    <a href="#" style="color: #2266aa; text-decoration: underline; font-weight: bold;" onmouseover="this.style.color='#cc00cc'" onmouseout="this.style.color='#2266aa'">my portfolio</a> &nbsp;|&nbsp;
+                    <a href="#" style="color: #2266aa; text-decoration: underline;" onmouseover="this.style.color='#cc00cc'" onmouseout="this.style.color='#2266aa'">instagram</a> &nbsp;|&nbsp;
+                    <a href="#" style="color: #2266aa; text-decoration: underline;" onmouseover="this.style.color='#cc00cc'" onmouseout="this.style.color='#2266aa'">prints</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding: 25px 0 5px; font-size: 13px; color: #3b4b5a;">
+                    <p style="margin: 0 0 8px;">If I owe you money, no I don't.</p>
+                    <a href="#" style="color: #575e6b; text-decoration: underline dotted;">unsubscribe</a>
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+          </td>
+        </tr>
+      </table>
+      
+      
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
