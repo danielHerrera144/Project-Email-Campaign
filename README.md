@@ -1,1 +1,1 @@
-https://github.com/danielHerrera144/Project-Email-Campaign.git
+https://danielherrera144.github.io/Project-Email-Campaign/
